@@ -1,8 +1,2 @@
-export default function IndexPage() {
-  return (
-    <>
-      <p>Hello!</p>
-      <h3>Other things</h3>
-    </>
-  );
-}
+// if you need the route to be the same as something else, same as product page in this case
+export { default } from './products';
