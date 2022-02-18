@@ -1,0 +1,21 @@
+Module #1 - Introduction and Setup
+----------------------------------
+1) Tooling and Starter Files Setup
+-node, MongoDB Compass (visualize DB), Apollo, 
+
+2) The Tech Stack Explained
+-Front-End: built with 
+--React: lib for building UI
+--Next.js: Framework for React, adds things like routing, pages, static rendering, SSR
+--Apollo Client: for GraphQL api
+--Styled Components: scoped CSS in react, CSS in js
+
+-Backend:
+--Keystone.js: framework that gives us a headless cms, allows you to log into your cms and gives us a graphql api that will allow us to write queries
+  -node
+  -MongoDB
+
+Module #2 - Learning Next.js
+----------------------------
+3) An Intro to Next
+-
