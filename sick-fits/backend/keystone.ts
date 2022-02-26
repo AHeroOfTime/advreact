@@ -7,6 +7,7 @@ import { config, createSchema } from '@keystone-next/keystone/schema';
 import { User } from './schemas/User';
 import { ProductImage } from './schemas/ProductImage';
 import { Product } from './schemas/Product';
+import { CartItem } from './schemas/CartItem';
 import 'dotenv/config';
 import { insertSeedData } from './seed-data';
 import { sendPasswordResetEmail } from './lib/mail';
@@ -58,6 +59,7 @@ export default withAuth(
       User,
       Product,
       ProductImage,
+      CartItem,
     }),
     ui: {
       // show the UI only for people who pass this test

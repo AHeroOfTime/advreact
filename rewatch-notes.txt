@@ -18,4 +18,42 @@ Module #1 - Introduction and Setup
 Module #2 - Learning Next.js
 ----------------------------
 3) An Intro to Next
+-A framework for building sites/apps with react.
+-index.js = index.html
+-file system based routing: create a page, and the page will show up (inside a pages folder)
+-URL -> URL/account, etc.
+-has hot reloading!
+-Njs is server rendered, but can be statically rendered as well: at build time you can prerender pages for quick loading
+
+4) Creatin a Page Layout Component
+-in Njs a page is as high as you can get
+-everything inside of the page gets dumped into the body tag
+-to get something to show up on every page (like a nav):
+  -create a _app.js file in your pages dir(special to Next)
+  -pass your App component 2 props ({ Component, pageProps })
+  -render <Component {...pageProps} /> and pass it the spread pageProps
+-_document.js file setup: 
+  -import Document, { Html, Head, NextSctript, Main } from 'next/document'
+  -must be done as a class (for now)
+  -export default class MyDocument extends Document {
+    render() { //because its a class component
+      return (<Html>
+        <Head> Header/meta stuff</Head>
+        <body>
+          <Main></Main>
+          <NextScript></NextScript>
+        </body>
+      </Html>)
+    }
+  }
+
+5) Creating Our Header and Nav Components
+-Link tag in Njs allows for faster loading, doesnt actually refresh page, uses push state to 'change' page then rerender page/content
+-imported from 'next/link'
+-anytime you want to link to something that part of your website, use the Link tag
+-anything outside, use a regular a tag
+
+Module #3 - CSS and Styled Components
+-------------------------------------
+6) An Intro to Styled Components and CSS
 -
