@@ -56,4 +56,68 @@ Module #2 - Learning Next.js
 Module #3 - CSS and Styled Components
 -------------------------------------
 6) An Intro to Styled Components and CSS
+-CSS in JS, it is a package that needs to be installed
+-scopes CSS to that component
+-can nest selectors like in SASS
+-import styled from 'styled-components'
+-create a var for your element
+-set it = to syled.ElementType(div, h1, etc)`` w/ backticks where your styles go
+-called tag template literals
+  const Logo = styled.div`
+    background: red;
+  `
+-then use that as its own mini component in your file
+  <Logo />
+-SC will attach a random id to your element in the DOM as a marker
+-has the ability to do theme variables (idk what that means exactly)
+
+7) Global Styles, Typography, and Layout Styles
+-first you have to import the function from sc
+-import { createGlobalStyles } from 'styled-components'
+-set a var to the method
+  const GlobalStyles = createGlobalStyles`
+    styles go here
+    background: red;
+  `
+-when setting CSS vars, you can put them on the html el or the :root {}. The benefit of putting them on the root is that you could reuse that css inside a stand alone SVG el
+-creating css vars:
+  :root (or html) {
+    --grey: #3a3a3a;
+    (can set a backup, that points to the other value)
+    --gray: var(--grey)
+  }
+-to use GlobalStyles, just go to your page (probably highest level) and inject in like a component
+  <GlobalStyles /> (created above)
+-have to style button fonts, for some reason when you apply a font family to the body, is does not apply to button so you have to do that seperately
+
+8) Visualizing Route Changes
+-package called nprogress
+-import the styles from nprogress, or whereever your styles for it live
+  import 'nprogress/mprogress.css'
+-also have to import nprogress itself
+  import NProgress from 'nprogress'
+-need to import router from next so you can hook into the events
+  import Router from 'next/router'
+-hook into router events:
+  Router.events.on('routerChangeStart', () => NProgress.start()) // for starting
+  Router.events.on('routerChangeComplete', () => NProgress.done()) // for ending
+  Router.events.on('routerChangeError', () => NProgress.done()) // if an error occurs
+
+9) Fixing Styled Components Flicker on Server Render
+-for when you get the flash of unstyled elements before your page fully renders (unstyled coming from the server side rendering)
+-google serverstylesheet styled-components
+-do this in the _document file:
+  import { ServerStyleSheet } from 'styled-components'
+  static getInitialProps({ renderPage }) {
+    const sheet = new ServerStyleSheet();
+    // get this from the docs prob
+    const page = renderPage(App => props => sheet.collectStyles(<App {...props} />));
+    const styleTags = sheet.getStyleElements();
+    return { ...page, styleTags };
+  }
+-if you get the warning: Prop className did not match Server: , Client: etc, probably a caching issue, delete the .next folder and restart dev server
+
+Module #4 - Server Side GraphQL Development
+-------------------------------------------
+10) Setting Up MongoDB
 -
