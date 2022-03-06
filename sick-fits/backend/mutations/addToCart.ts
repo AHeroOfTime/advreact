@@ -1,6 +1,9 @@
-import { KeystoneContext } from '@keystone-next/types';
-import { CartItemCreateInput } from '../.keystone/schema-types';
+//
+import { KeystoneContext, SessionStore } from '@keystone-next/types';
+import { CartItem } from '../schemas/CartItem';
 import { Session } from '../types';
+
+import { CartItemCreateInput } from '../.keystone/schema-types';
 
 async function addToCart(
   root: any,
@@ -16,9 +19,10 @@ async function addToCart(
   // 2. query the current users cart
   const allCartItems = await context.lists.CartItem.findMany({
     where: { user: { id: sesh.itemId }, product: { id: productId } },
-    resolveField: 'id,quantity',
+    resolveFields: 'id, quantity',
   });
   const [existingCartItem] = allCartItems;
+
   if (existingCartItem) {
     console.log(
       `There is already ${existingCartItem.quantity}, increment by 1!`,
@@ -28,6 +32,7 @@ async function addToCart(
     return await context.lists.CartItem.updateOne({
       id: existingCartItem.id,
       data: { quantity: existingCartItem.quantity + 1 },
+      resolveFields: false,
     });
   }
   // 5. if it isnt, create a new cart item
@@ -36,6 +41,7 @@ async function addToCart(
       product: { connect: { id: productId } },
       user: { connect: { id: sesh.itemId } },
     },
+    resolveFields: false,
   });
 }
 

@@ -62,6 +62,7 @@ export default withAuth(
       ProductImage,
       CartItem,
     }),
+    // for a custom mutation
     extendGraphqlSchema,
     ui: {
       // show the UI only for people who pass this test
