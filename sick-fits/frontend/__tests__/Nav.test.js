@@ -33,8 +33,6 @@ const signedInMocksWithCartItems = [
   },
 ];
 
-console.log(signedInMocksWithCartItems);
-
 describe('<Nav/>', () => {
   it('renders a minimal nav when signed out', () => {
     const { container, debug } = render(
