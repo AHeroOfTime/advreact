@@ -35,9 +35,9 @@ const CREATE_PRODUCT_MUTATION = gql`
 export default function CreateProduct() {
   const { inputs, handleChange, clearForm, resetForm } = useForm({
     image: '',
-    name: 'Nice Shoes',
-    price: 1231,
-    description: 'Shoes.',
+    name: '',
+    price: 0,
+    description: '',
   });
   // useMutation takes 2 args, the mutation we created and any additional data that needs to come along
   // we descructure the return value: first thing is the func that runs the mutation, the second thing is an object like a query that holds the loading state, error state, and the data
@@ -95,7 +95,7 @@ export default function CreateProduct() {
             type="number"
             id="price"
             name="price"
-            placeholder="Price"
+            placeholder="price"
             value={inputs.price}
             onChange={handleChange}
           />
@@ -116,3 +116,5 @@ export default function CreateProduct() {
     </Form>
   );
 }
+
+export { CREATE_PRODUCT_MUTATION };
